@@ -1162,19 +1162,3 @@
 
 </body>
 </html>
-```
-
-### What this gives you
-
-The animation is deliberately staged:
-
-**`0s`** → completely dark
-**`0–1.35s`** → lamp physically drops down from above
-**`~1.9s`** → bulb switches on
-**`~2s`** → green light cone appears
-**`~2.3s`** → glass login card fades/scales into view
-**afterwards** → robot floats + button has a moving shine + card has subtle mouse parallax
-
-The nice thing is that the **lamp isn't just an image**. It's constructed with CSS, so you can change the cable length, shade, bulb, glow, position, timing, etc. without needing an asset.
-
-If you're putting this into your usual **Next.js + Tailwind + Framer Motion** stack, I can also convert this exact design into a proper component architecture (`Lamp`, `Robot`, `GlassCard`, `LoginForm`) rather than keeping everything in one HTML file.
