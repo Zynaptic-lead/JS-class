@@ -1,0 +1,1180 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Neon Glass Login</title>
+
+  <style>
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: #020403;
+      color: #fff;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    /* =========================================================
+       SCENE
+    ========================================================= */
+
+    .scene {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(20, 70, 48, 0.12),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(0, 255, 136, 0.05),
+          transparent 40%
+        ),
+        #020403;
+    }
+
+    /* subtle grain */
+
+    .scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+
+      mix-blend-mode: overlay;
+      z-index: 20;
+    }
+
+    /* =========================================================
+       BACKGROUND LIGHT
+    ========================================================= */
+
+    .ambient {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background: rgba(0, 255, 136, 0.04);
+      filter: blur(100px);
+
+      opacity: 0;
+
+      animation: ambientIn 2s 2.1s ease forwards;
+    }
+
+    @keyframes ambientIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* =========================================================
+       LAMP
+    ========================================================= */
+
+    .lamp-wrapper {
+      position: absolute;
+
+      top: 0;
+      left: 50%;
+
+      width: 160px;
+      height: 310px;
+
+      transform: translateX(-50%);
+
+      z-index: 10;
+
+      animation:
+        lampDrop 1.35s cubic-bezier(.22, 1, .36, 1) forwards,
+        lampFloat 5s 2.2s ease-in-out infinite;
+    }
+
+    /* cable */
+
+    .wire {
+      position: absolute;
+
+      top: 0;
+      left: 50%;
+
+      width: 4px;
+      height: 145px;
+
+      transform: translateX(-50%);
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          to right,
+          #080a09,
+          #303531,
+          #080a09
+        );
+
+      box-shadow:
+        0 0 8px rgba(255,255,255,.08);
+    }
+
+    /* little cable connector */
+
+    .connector {
+      position: absolute;
+
+      top: 137px;
+      left: 50%;
+
+      width: 30px;
+      height: 18px;
+
+      transform: translateX(-50%);
+
+      border-radius: 7px 7px 3px 3px;
+
+      background: linear-gradient(
+        90deg,
+        #171b18,
+        #4c534e,
+        #171b18
+      );
+    }
+
+    /* lampshade */
+
+    .shade {
+      position: absolute;
+
+      top: 145px;
+      left: 50%;
+
+      width: 125px;
+      height: 75px;
+
+      transform: translateX(-50%);
+
+      background:
+        linear-gradient(
+          120deg,
+          #111512,
+          #343a35 50%,
+          #090c0a
+        );
+
+      clip-path: polygon(
+        27% 0,
+        73% 0,
+        100% 100%,
+        0 100%
+      );
+
+      filter:
+        drop-shadow(0 20px 20px rgba(0,0,0,.8));
+
+      border-bottom: 2px solid #687068;
+    }
+
+    /* shade highlight */
+
+    .shade::before {
+      content: "";
+
+      position: absolute;
+      left: 15%;
+      top: 5%;
+
+      width: 35%;
+      height: 90%;
+
+      transform: skewX(-15deg);
+
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+      );
+
+      filter: blur(3px);
+    }
+
+    /* bulb */
+
+    .bulb {
+      position: absolute;
+
+      top: 200px;
+      left: 50%;
+
+      width: 35px;
+      height: 35px;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background: #142019;
+
+      box-shadow:
+        inset 0 0 8px rgba(255,255,255,.1);
+
+      transition: .5s ease;
+    }
+
+    .bulb::before {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      top: -6px;
+
+      width: 18px;
+      height: 10px;
+
+      transform: translateX(-50%);
+
+      border-radius: 3px;
+
+      background: #444a45;
+    }
+
+    .lamp-wrapper.lit .bulb {
+      background: #d9ffe9;
+
+      box-shadow:
+        0 0 10px #fff,
+        0 0 30px #00ff88,
+        0 0 80px rgba(0,255,136,.9);
+    }
+
+    /* =========================================================
+       LIGHT CONE
+    ========================================================= */
+
+    .light-cone {
+      position: absolute;
+
+      top: 215px;
+      left: 50%;
+
+      width: 580px;
+      height: 500px;
+
+      transform:
+        translateX(-50%)
+        perspective(500px)
+        rotateX(2deg);
+
+      clip-path: polygon(
+        42% 0,
+        58% 0,
+        100% 100%,
+        0 100%
+      );
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,255,136,.18),
+          rgba(0,255,136,.05),
+          transparent
+        );
+
+      filter: blur(7px);
+
+      opacity: 0;
+
+      z-index: 1;
+
+      animation:
+        lightAppear .8s 2s ease forwards;
+    }
+
+    @keyframes lightAppear {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* =========================================================
+       LOGIN AREA
+    ========================================================= */
+
+    .login-container {
+      position: absolute;
+
+      left: 50%;
+      top: 54%;
+
+      transform:
+        translate(-50%, -50%)
+        scale(.94);
+
+      width: min(430px, calc(100vw - 40px));
+
+      opacity: 0;
+
+      z-index: 5;
+
+      animation:
+        cardAppear 1s 2.3s cubic-bezier(.22, 1, .36, 1)
+        forwards;
+    }
+
+    @keyframes cardAppear {
+      to {
+        opacity: 1;
+
+        transform:
+          translate(-50%, -50%)
+          scale(1);
+      }
+    }
+
+    /* =========================================================
+       GLASS CARD
+    ========================================================= */
+
+    .login-card {
+      position: relative;
+
+      padding: 42px 38px 34px;
+
+      border-radius: 28px;
+
+      border: 1px solid rgba(255,255,255,.12);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.10),
+          rgba(255,255,255,.025)
+        );
+
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+
+      box-shadow:
+        0 35px 100px rgba(0,0,0,.7),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+      overflow: hidden;
+    }
+
+    /* top reflection */
+
+    .login-card::before {
+      content: "";
+
+      position: absolute;
+
+      top: -100px;
+      left: -100px;
+
+      width: 300px;
+      height: 180px;
+
+      border-radius: 50%;
+
+      background: rgba(0,255,136,.09);
+
+      filter: blur(70px);
+    }
+
+    /* border glow */
+
+    .login-card::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      border-radius: inherit;
+
+      padding: 1px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.2),
+          transparent 35%,
+          rgba(0,255,136,.12),
+          transparent 70%
+        );
+
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       ROBOT
+    ========================================================= */
+
+    .robot {
+      position: relative;
+
+      width: 75px;
+      height: 75px;
+
+      margin: 0 auto 20px;
+
+      animation:
+        robotFloat 3.5s ease-in-out infinite;
+    }
+
+    .robot-head {
+      position: absolute;
+
+      width: 65px;
+      height: 54px;
+
+      left: 5px;
+      top: 8px;
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #343b37,
+          #111512
+        );
+
+      border: 1px solid rgba(255,255,255,.14);
+
+      box-shadow:
+        0 12px 25px rgba(0,0,0,.5),
+        inset 0 1px rgba(255,255,255,.12);
+    }
+
+    .robot-head::before {
+      content: "";
+
+      position: absolute;
+
+      top: -13px;
+      left: 50%;
+
+      width: 4px;
+      height: 14px;
+
+      transform: translateX(-50%);
+
+      background: #8d9690;
+    }
+
+    .robot-head::after {
+      content: "";
+
+      position: absolute;
+
+      top: -19px;
+      left: 50%;
+
+      width: 8px;
+      height: 8px;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background: #00ff88;
+
+      box-shadow:
+        0 0 12px #00ff88;
+    }
+
+    .eyes {
+      position: absolute;
+
+      left: 50%;
+      top: 20px;
+
+      display: flex;
+      gap: 15px;
+
+      transform: translateX(-50%);
+    }
+
+    .eye {
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+
+      background: #9affc5;
+
+      box-shadow:
+        0 0 10px #00ff88;
+    }
+
+    .robot-mouth {
+      position: absolute;
+
+      left: 50%;
+      bottom: 9px;
+
+      width: 20px;
+      height: 6px;
+
+      transform: translateX(-50%);
+
+      border-bottom: 2px solid #00ff88;
+
+      border-radius: 50%;
+    }
+
+    @keyframes robotFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    /* =========================================================
+       TYPOGRAPHY
+    ========================================================= */
+
+    .heading {
+      text-align: center;
+
+      font-size: 27px;
+      font-weight: 700;
+
+      letter-spacing: -1px;
+
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+
+      color: rgba(255,255,255,.48);
+
+      font-size: 13px;
+
+      margin-bottom: 28px;
+    }
+
+    /* =========================================================
+       INPUT
+    ========================================================= */
+
+    .field {
+      position: relative;
+
+      margin-bottom: 15px;
+    }
+
+    .field input {
+      width: 100%;
+      height: 54px;
+
+      padding: 0 17px;
+
+      outline: none;
+
+      border: 1px solid rgba(255,255,255,.10);
+
+      border-radius: 15px;
+
+      color: #fff;
+
+      background: rgba(0,0,0,.25);
+
+      transition:
+        border .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+    }
+
+    .field input::placeholder {
+      color: rgba(255,255,255,.3);
+    }
+
+    .field input:focus {
+      border-color: rgba(0,255,136,.45);
+
+      background: rgba(0,0,0,.35);
+
+      box-shadow:
+        0 0 0 4px rgba(0,255,136,.06),
+        0 0 25px rgba(0,255,136,.06);
+    }
+
+    /* =========================================================
+       OPTIONS
+    ========================================================= */
+
+    .options {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      margin: 18px 0;
+
+      font-size: 12px;
+
+      color: rgba(255,255,255,.45);
+    }
+
+    .remember {
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      cursor: pointer;
+    }
+
+    .remember input {
+      accent-color: #00ff88;
+    }
+
+    .forgot {
+      color: #67ffa9;
+
+      text-decoration: none;
+    }
+
+    /* =========================================================
+       BUTTON
+    ========================================================= */
+
+    .submit {
+      position: relative;
+
+      width: 100%;
+      height: 54px;
+
+      border: 0;
+
+      border-radius: 15px;
+
+      cursor: pointer;
+
+      color: #021108;
+
+      font-weight: 800;
+
+      background:
+        linear-gradient(
+          135deg,
+          #00ff88,
+          #5cffae
+        );
+
+      box-shadow:
+        0 12px 35px rgba(0,255,136,.18);
+
+      overflow: hidden;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .submit::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -100%;
+
+      width: 70%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.6),
+          transparent
+        );
+
+      transform: skewX(-20deg);
+
+      animation: buttonShine 3s 4s infinite;
+    }
+
+    @keyframes buttonShine {
+      0% {
+        left: -100%;
+      }
+
+      40%, 100% {
+        left: 140%;
+      }
+    }
+
+    .submit:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 18px 45px rgba(0,255,136,.28);
+    }
+
+    .submit:active {
+      transform: scale(.98);
+    }
+
+    /* =========================================================
+       DIVIDER
+    ========================================================= */
+
+    .divider {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      margin: 25px 0;
+
+      color: rgba(255,255,255,.25);
+
+      font-size: 11px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background: rgba(255,255,255,.08);
+    }
+
+    /* =========================================================
+       SOCIAL
+    ========================================================= */
+
+    .socials {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 10px;
+    }
+
+    .social {
+      height: 48px;
+
+      border-radius: 13px;
+
+      border: 1px solid rgba(255,255,255,.09);
+
+      color: rgba(255,255,255,.7);
+
+      background: rgba(255,255,255,.035);
+
+      cursor: pointer;
+
+      transition: .25s ease;
+    }
+
+    .social:hover {
+      background: rgba(255,255,255,.07);
+
+      border-color: rgba(255,255,255,.17);
+
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .signup {
+      text-align: center;
+
+      margin-top: 25px;
+
+      color: rgba(255,255,255,.38);
+
+      font-size: 12px;
+    }
+
+    .signup a {
+      color: #72ffb1;
+
+      text-decoration: none;
+
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       LAMP ANIMATION
+    ========================================================= */
+
+    @keyframes lampDrop {
+      0% {
+        transform:
+          translate(-50%, -300px)
+          rotate(-4deg);
+      }
+
+      60% {
+        transform:
+          translate(-50%, 12px)
+          rotate(2deg);
+      }
+
+      80% {
+        transform:
+          translate(-50%, -5px)
+          rotate(-1deg);
+      }
+
+      100% {
+        transform:
+          translate(-50%, 0)
+          rotate(0deg);
+      }
+    }
+
+    @keyframes lampFloat {
+      0%, 100% {
+        transform:
+          translateX(-50%)
+          rotate(0deg);
+      }
+
+      50% {
+        transform:
+          translateX(-50%)
+          rotate(.7deg);
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 600px) {
+      .lamp-wrapper {
+        transform: translateX(-50%) scale(.75);
+        transform-origin: top center;
+      }
+
+      .login-container {
+        top: 57%;
+      }
+
+      .login-card {
+        padding: 34px 22px 27px;
+        border-radius: 23px;
+      }
+
+      .heading {
+        font-size: 23px;
+      }
+
+      .light-cone {
+        width: 430px;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="scene">
+
+    <!-- Ambient background -->
+    <div class="ambient"></div>
+
+    <!-- =========================================
+         LAMP
+    ========================================== -->
+
+    <div class="lamp-wrapper" id="lamp">
+
+      <div class="wire"></div>
+
+      <div class="connector"></div>
+
+      <div class="shade"></div>
+
+      <div class="bulb"></div>
+
+    </div>
+
+    <!-- Light coming from the bulb -->
+    <div class="light-cone"></div>
+
+
+    <!-- =========================================
+         LOGIN
+    ========================================== -->
+
+    <section class="login-container">
+
+      <div class="login-card">
+
+        <!-- Robot -->
+        <div class="robot">
+
+          <div class="robot-head">
+
+            <div class="eyes">
+              <span class="eye"></span>
+              <span class="eye"></span>
+            </div>
+
+            <div class="robot-mouth"></div>
+
+          </div>
+
+        </div>
+
+
+        <h1 class="heading">
+          Welcome Back
+        </h1>
+
+        <p class="subtitle">
+          Sign in to continue to your workspace
+        </p>
+
+
+        <!-- Username -->
+        <div class="field">
+          <input
+            type="text"
+            placeholder="Username or email"
+            autocomplete="username"
+          />
+        </div>
+
+
+        <!-- Password -->
+        <div class="field">
+          <input
+            type="password"
+            placeholder="Password"
+            autocomplete="current-password"
+          />
+        </div>
+
+
+        <!-- Options -->
+        <div class="options">
+
+          <label class="remember">
+            <input type="checkbox" />
+            <span>Remember me</span>
+          </label>
+
+          <a href="#" class="forgot">
+            Forgot password?
+          </a>
+
+        </div>
+
+
+        <!-- Submit -->
+        <button class="submit" id="loginButton">
+          SIGN IN
+        </button>
+
+
+        <!-- Divider -->
+        <div class="divider">
+          OR CONTINUE WITH
+        </div>
+
+
+        <!-- Social -->
+        <div class="socials">
+
+          <button class="social">
+            Google
+          </button>
+
+          <button class="social">
+            GitHub
+          </button>
+
+        </div>
+
+
+        <!-- Signup -->
+        <p class="signup">
+          Don't have an account?
+          <a href="#">Create account</a>
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+    /* =========================================================
+       LAMP SEQUENCE
+    ========================================================= */
+
+    const lamp = document.getElementById("lamp");
+
+    /*
+      The lamp first drops into the scene.
+      After it reaches its position, we turn the bulb on.
+    */
+
+    setTimeout(() => {
+      lamp.classList.add("lit");
+    }, 1900);
+
+
+    /* =========================================================
+       LOGIN BUTTON
+    ========================================================= */
+
+    const loginButton =
+      document.getElementById("loginButton");
+
+    loginButton.addEventListener("click", () => {
+
+      loginButton.textContent = "SIGNING IN...";
+
+      loginButton.style.pointerEvents = "none";
+
+      setTimeout(() => {
+
+        loginButton.textContent = "WELCOME ✓";
+
+      }, 1200);
+
+    });
+
+
+    /* =========================================================
+       PARALLAX EFFECT
+    ========================================================= */
+
+    const card =
+      document.querySelector(".login-card");
+
+    const scene =
+      document.querySelector(".scene");
+
+    scene.addEventListener("mousemove", (event) => {
+
+      const x =
+        (event.clientX / window.innerWidth - 0.5);
+
+      const y =
+        (event.clientY / window.innerHeight - 0.5);
+
+      card.style.transform =
+        `perspective(1000px)
+         rotateX(${y * -3}deg)
+         rotateY(${x * 3}deg)`;
+
+    });
+
+
+    scene.addEventListener("mouseleave", () => {
+
+      card.style.transform =
+        "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+
+    });
+  </script>
+
+</body>
+</html>
+```
+
+### What this gives you
+
+The animation is deliberately staged:
+
+**`0s`** → completely dark
+**`0–1.35s`** → lamp physically drops down from above
+**`~1.9s`** → bulb switches on
+**`~2s`** → green light cone appears
+**`~2.3s`** → glass login card fades/scales into view
+**afterwards** → robot floats + button has a moving shine + card has subtle mouse parallax
+
+The nice thing is that the **lamp isn't just an image**. It's constructed with CSS, so you can change the cable length, shade, bulb, glow, position, timing, etc. without needing an asset.
+
+If you're putting this into your usual **Next.js + Tailwind + Framer Motion** stack, I can also convert this exact design into a proper component architecture (`Lamp`, `Robot`, `GlassCard`, `LoginForm`) rather than keeping everything in one HTML file.

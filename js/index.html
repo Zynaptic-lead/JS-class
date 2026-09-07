@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="pen"></p>
+<button onclick="document.getElementById('pen').innerHTML=Date()">Click me</button>
+
+<p id="kay">Today is monday</p>
+<button onclick="document.getElementById('kay').innerHTML='<h2>No! Today is Tuesday</h2>'">Click!</button>
+
+
+
+     <script>
+ let examScore = 60;
+let assignmentScore = 65;
+let attendance = 82;
+let conduct = "poor";
+let feePaid = true;
+
+
+let finalScore =
+  (examScore * 0.6) +
+  (assignmentScore * 0.3) +
+  (attendance * 0.1);
+
+console.log("Final Score:", finalScore);
+
+
+if (!feePaid) {
+  console.log("Result Withheld");
+}
+
+
+else if (attendance < 75) {
+  console.log("Grade: F");
+  console.log("Status: Student Failed");
+}
+
+else {
+  let grade;
+
+  if (finalScore >= 80) {
+    grade = "A";
+
+    if (attendance >= 90) {
+      console.log("Status: Outstanding Student");
+    } else {
+      console.log("Status: Excellent Result");
+    }
+  }
+
+  else if (finalScore >= 70) {
+    grade = "B";
+
+    if (attendance < 80) {
+      console.log("Status: Good Result, But Improve Your Attendance");
+    } else {
+      console.log("Status: Very Good");
+    }
+  }
+
+  else if (finalScore >= 60) {
+    grade = "C";
+    console.log("Status: Good");
+  }
+
+  else if (finalScore >= 50) {
+    grade = "D";
+    console.log("Status: You Need to Improve");
+  }
+
+  else {
+    grade = "F";
+    console.log("Status: Student Failed");
+  }
+
+
+  if (conduct === "poor") {
+    if (grade === "A" || grade === "B") {
+      grade = "C";
+    }
+
+    console.log("Warning: Poor Conduct");
+  }
+
+  console.log("Grade:", grade);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>This is a simple form </legend><br>
+        <label for="gender">Gender:</label><br>
+        <select name="gender" id="gender">
+            <option value=""></option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+        </select><br><br>
+
+        <label for="message">Message*</label><br>
+        <textarea name="message" id="message" cols="30px" rows="5px"></textarea><br><br>
+
+        <label for="cars">Choose a car:</label><br>
+        <input list="cars">
+        <datalist id="cars" name="cars">
+            <option value="BMW">
+            <option value="Lexus">
+            <option value="Toyota">
+        </datalist>
+
+         <button type="submit">Click me to submit the form </button>
+    <input type="submit"><br><br><br>
+
+    <label for="fname">Firstname:</label><br>
+    <input type="text" name="fname" id="fname" value="John" size="40">
+    </fieldset>
+    </form>
+    <br><br><br>
+
+
+
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="table.html">
+        <label for="fname">firstname</label><br>
+        <input type="text" name="fname" id="fname" required autofocus autocomplete="on"><br><br>
+        <label for="lname">Lastname</label>
+        <input type="text" name="lname" id="lname" required placeholder="Enter your lastname"><br>
+        <label for="bot">Do you agree with our terms and conditions?</label>
+        <input type="checkbox" name="bot" id="bot"><br><br>
+
+        <label for="cars">Choose your favourite car:</label><br>
+        <input type="radio" name="cars" id="cars">Benz
+        <input type="radio" name="cars" id="cars">Benz
+        <input type="radio" name="cars" id="cars">Benz
+
+        <label for="upload">Upload your cv:</label>
+        <input type="file" name="upload" id="upload"><br><br>
+
+        <label for="img">Upload your image:</label>
+        <input type="image" src="image.jpg" width="100px" height="100px">
+
+        <input type="submit">
+    </form>
+</body>
+</html>
+    
+   
+
+
+</body>
+</html>

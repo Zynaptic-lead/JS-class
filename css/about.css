@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: teal;
+    opacity: 0.3;
+    color: white;
+   margin: 20px 30px 40px ;
+}
+/* div p {
+    color: coral;
+} */
+div > p{
+    color: yellow;
+}
+
+div + p{
+    color: blue;
+}
+
+div ~ p{
+    color: coral;
+}
+div p:hover{
+    border: 2px solid black;
+    outline: 2px dashed yellow;
+}
+input:focus{
+    border: none;
+    outline: none;
+    outline-color: none;
+    border-bottom: 4px solid red;
+    border-color: none;
+}
+div ~ p::first-letter{
+font-size: 50px;
+}
+input[type="text"],
+input[type="email"]{
+        border: none;
+    outline: none;
+    outline-color: none;
+    border-bottom: 4px solid rgb(0, 32, 212);
+    border-color: none;
+    color: yellow;
+}

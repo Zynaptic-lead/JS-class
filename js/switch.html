@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let day = "null";
+
+        switch(day){
+            case "Monday":
+                console.log("Today is monday");
+            break;
+            case "Tuesday":
+                console.log("Today is tuesday");
+                break;
+            case "Wednesday":
+                console.log("Today is Wednesday");
+                break;
+            case "Thursday":
+                console.log("Today is Thursday");
+                break;
+            case "Friday":
+                console.log("Today is Friday");
+                break;
+                default:
+                    console.log("Invalid day")
+        }
+
+        let num1 = 20;
+        let num2 = 10;
+        let operator = "+";
+
+        switch(operator){
+            case "+":
+                console.log(num1 + num2);
+                break;
+            case "-":
+                console.log(num1 - num2);
+                break;
+            case "*":
+                console.log(num1 * num2);
+                break;
+            case "/":
+                console.log(num1 / num2);
+                break;
+                default:
+                    console.log('Not a Number')
+        }
+
+
+        let role = "admin"
+        switch(role){
+            case "admin":
+                console.log('Welcome to the admin dashboard');
+                console.log('You have full access');
+                break;
+            case "teacher":
+                console.log('Welcome to the teacher dashboard');
+                console.log('You can manage student');
+                break;
+            case "Student":
+                console.log('Welcome back to school');
+                console.log('You can view your course');
+                break;
+            case "Guest":
+                console.log('Welcome our new Guest');
+                console.log('You can limited access');
+                break;
+                default:
+                    console.log('Unknown user role ')
+        }
+    </script>
+</body>
+</html>

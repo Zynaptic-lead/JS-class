@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table, th, td{
+        border: 1px solid red;
+        border-collapse: collapse;
+        padding: 10px;
+    }
+</style>
+<body>
+    <table>
+        <tr>
+            <th colspan="6">Colspan & Rowspan Exam</th>
+            <!-- <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+             -->
+        </tr>
+        <tr>
+            <th>Date</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+        </tr>
+        <tr>
+            <td>8:00am</td>
+            <td>Maths</td>
+            <td>English</td>
+            <td>Biology</td>
+            <td>Agric</td>
+            <td>CRK</td>
+        </tr>
+        <tr>
+            <td>9:00am - 11:00am</td>
+            <td colspan="2">Biology</td>
+            <!-- <td></td> -->
+             <td>Maths</td>
+             <td>English</td>
+             <td>CRK</td>
+        </tr>
+        <tr>
+            <td rowspan="2">12:00pm</td>
+            <td>CRK</td>
+            <td>Agric</td>
+            <td>PHE</td>
+            <td>Social Studies</td>
+            <td>Animal Husb.</td>
+        </tr>
+
+        <tr>
+            <!-- <td>1:00pm</td> -->
+             <td>Civic</td>
+             <td>IRS</td>
+             <td>Basic Studies</td>
+             <td>Home economics</td>
+             <td>Computer Science</td>
+        </tr>
+        <tr>
+            <td rowspan="3">3:00pm</td>
+            <td>PHE</td>
+            <td>Animal Husb.</td>
+            <td rowspan="2">Yoruba</td>
+            <td>Marketing</td>
+            <td>Home economics</td>
+        </tr>
+        <tr>
+            <td>IRS</td>
+            <td>Social Studies</td>
+            <td>Biology</td>
+            <td>Agric</td>
+        </tr>
+        <tr>
+            <td>English</td>
+            <td>Math</td>
+            <td>Computer Science</td>
+            <td>Basic Studies</td>
+            <td>Commerce</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,50 @@
+/* *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+} */
+body{
+    background: url('bg.webp') no-repeat center top / 100% black;
+    /* background-image: url('bg.webp');
+    background-repeat:no-repeat;
+    background-size: 50%;
+    background-position: right top; */
+    /* background-attachment: fixed; */
+    /* opacity: 0.3; */
+    color: rgb(169, 0, 0);
+}
+div > p{
+    color: yellow;
+}
+div + p{
+    color: blue;
+}
+div ~ p{
+    /* border-width: 2px;
+    border-color: red;
+    border-style: double; */
+    border: 2px red double;
+}
+/* p:hover{
+    border: 1px solid black;
+    color: white;
+    width: 200px;
+}
+input:focus{
+    border: none;
+    outline: none;
+    background-color: none;
+    border-bottom: 1px solid yellow;
+    color: red;
+}
+p::first-letter{
+    font-size: 40px;
+    content: " this is a pseudo element selector ";
+} */
+
+img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid white;
+}

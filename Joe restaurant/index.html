@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Joe's Restaurant — Watch our chefs cook live and order your favourite dishes in real time." />
+  <title>Joe's Restaurant · Live Kitchen &amp; Ordering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== Preloader ===== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__logo">
+      <i class="fa-solid fa-utensils"></i>
+      <span>Joe's</span>
+    </div>
+    <div class="preloader__bar"><span></span></div>
+  </div>
+
+  <!-- ===== Header / Nav ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="nav__logo">
+        <i class="fa-solid fa-utensils"></i>
+        <span>Joe's<b>.</b></span>
+      </a>
+
+      <div class="nav__menu" id="navMenu">
+        <ul class="nav__list">
+          <li><a href="#home" class="nav__link active">Home</a></li>
+          <li><a href="#live" class="nav__link">Live Kitchen</a></li>
+          <li><a href="#menu" class="nav__link">Menu</a></li>
+          <li><a href="#chefs" class="nav__link">Chefs</a></li>
+          <li><a href="#about" class="nav__link">About</a></li>
+        </ul>
+        <button class="nav__close" id="navClose" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="nav__actions">
+        <button class="cart-btn" id="cartBtn" aria-label="Open cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-btn__count" id="cartCount">0</span>
+        </button>
+        <button class="nav__toggle" id="navToggle" aria-label="Open menu">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero section" id="home">
+      <div class="hero__bg"></div>
+      <div class="container hero__container">
+        <div class="hero__content">
+          <span class="badge"><span class="dot"></span> Live now · Watch us cook</span>
+          <h1 class="hero__title">Watch it sizzle. <br /><span>Order it hot.</span></h1>
+          <p class="hero__text">
+            Step inside Joe's kitchen from anywhere. Stream our chefs preparing every
+            dish in real time, then order what you crave — delivered fresh to your door.
+          </p>
+          <div class="hero__buttons">
+            <a href="#live" class="btn btn--primary">
+              <i class="fa-solid fa-play"></i> Watch Live
+            </a>
+            <a href="#menu" class="btn btn--ghost">Browse Menu</a>
+          </div>
+          <div class="hero__stats">
+            <div><strong>4.9</strong><span>Avg rating</span></div>
+            <div><strong>1.2k+</strong><span>Watching now</span></div>
+            <div><strong>30<em>min</em></strong><span>Avg delivery</span></div>
+          </div>
+        </div>
+
+        <div class="hero__card">
+          <div class="hero__card-media">
+            <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80" alt="Chef plating a dish" />
+            <span class="live-tag"><span class="dot"></span> LIVE</span>
+          </div>
+          <div class="hero__card-body">
+            <div class="hero__card-row">
+              <div class="avatar">JC</div>
+              <div>
+                <h4>Chef Joe · Signature Grill</h4>
+                <p>Flame-seared ribeye in progress</p>
+              </div>
+            </div>
+            <a href="#live" class="hero__card-link">Join stream <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Live Kitchen ===== -->
+    <section class="live section" id="live">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__eyebrow">Real-time cooking</span>
+          <h2 class="section__title">The Live Kitchen</h2>
+          <p class="section__subtitle">Pick a station, watch the magic, and add dishes straight from the stream.</p>
+        </div>
+
+        <div class="live__grid">
+          <!-- Player -->
+          <div class="player">
+            <div class="player__video">
+              <video id="liveVideo" autoplay muted loop playsinline
+                poster="https://images.unsplash.com/photo-1514986888952-8cd320577b68?auto=format&fit=crop&w=1000&q=80">
+                <source src="https://cdn.coverr.co/videos/coverr-cooking-in-a-restaurant-kitchen-4998/1080p.mp4" type="video/mp4" />
+              </video>
+              <div class="player__overlay">
+                <span class="live-tag"><span class="dot"></span> LIVE</span>
+                <span class="player__viewers"><i class="fa-solid fa-eye"></i> <span id="viewerCount">1,248</span> watching</span>
+              </div>
+              <div class="player__controls">
+                <button id="muteBtn" aria-label="Toggle sound"><i class="fa-solid fa-volume-xmark"></i></button>
+                <div class="player__progress"><span></span></div>
+                <button id="fsBtn" aria-label="Fullscreen"><i class="fa-solid fa-expand"></i></button>
+              </div>
+            </div>
+
+            <div class="player__stations">
+              <button class="station active" data-title="Signature Grill" data-chef="Chef Joe">
+                <i class="fa-solid fa-fire-flame-curved"></i> Grill
+              </button>
+              <button class="station" data-title="Pasta Bar" data-chef="Chef Mia">
+                <i class="fa-solid fa-bowl-food"></i> Pasta
+              </button>
+              <button class="station" data-title="Sushi Counter" data-chef="Chef Ken">
+                <i class="fa-solid fa-fish"></i> Sushi
+              </button>
+              <button class="station" data-title="Dessert Lab" data-chef="Chef Ada">
+                <i class="fa-solid fa-ice-cream"></i> Dessert
+              </button>
+            </div>
+          </div>
+
+          <!-- Live chat -->
+          <aside class="chat">
+            <div class="chat__head">
+              <h4><i class="fa-solid fa-comments"></i> Live Chat</h4>
+              <span class="chat__now" id="stationLabel">Signature Grill · Chef Joe</span>
+            </div>
+            <div class="chat__body" id="chatBody"></div>
+            <form class="chat__form" id="chatForm">
+              <input type="text" id="chatInput" placeholder="Say something nice…" autocomplete="off" />
+              <button type="submit" aria-label="Send"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Menu ===== -->
+    <section class="menu section" id="menu">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__eyebrow">Freshly prepared</span>
+          <h2 class="section__title">Order From the Menu</h2>
+          <p class="section__subtitle">Everything you see being cooked, ready to add to your bag.</p>
+        </div>
+
+        <div class="menu__filters" id="menuFilters">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="grill">Grill</button>
+          <button class="chip" data-filter="pasta">Pasta</button>
+          <button class="chip" data-filter="sushi">Sushi</button>
+          <button class="chip" data-filter="dessert">Dessert</button>
+        </div>
+
+        <div class="menu__grid" id="menuGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== Chefs ===== -->
+    <section class="chefs section" id="chefs">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__eyebrow">The people behind the plates</span>
+          <h2 class="section__title">Meet the Chefs</h2>
+        </div>
+        <div class="chefs__grid" id="chefsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== About / CTA ===== -->
+    <section class="about section" id="about">
+      <div class="container about__inner">
+        <div class="about__media">
+          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80" alt="Restaurant interior" />
+        </div>
+        <div class="about__content">
+          <span class="section__eyebrow">Since 2009</span>
+          <h2 class="section__title">A kitchen with nothing to hide</h2>
+          <p>
+            At Joe's, transparency is the secret ingredient. Every dish is streamed
+            straight from our open kitchen so you know exactly how your food is made —
+            with real ingredients, real skill, and a whole lot of love.
+          </p>
+          <ul class="about__list">
+            <li><i class="fa-solid fa-check"></i> 100% fresh, locally-sourced produce</li>
+            <li><i class="fa-solid fa-check"></i> Live-streamed, open-kitchen cooking</li>
+            <li><i class="fa-solid fa-check"></i> 30-minute average delivery</li>
+          </ul>
+          <a href="#menu" class="btn btn--primary">Start your order</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#home" class="nav__logo"><i class="fa-solid fa-utensils"></i><span>Joe's<b>.</b></span></a>
+        <p>Watch it sizzle. Order it hot. Delivered fresh from our live kitchen to your door.</p>
+        <div class="footer__socials">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Explore</h5>
+        <a href="#live">Live Kitchen</a>
+        <a href="#menu">Menu</a>
+        <a href="#chefs">Chefs</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <a href="#"><i class="fa-solid fa-location-dot"></i> 24 Flavor St, Lagos</a>
+        <a href="#"><i class="fa-solid fa-phone"></i> +234 800 000 0000</a>
+        <a href="#"><i class="fa-solid fa-envelope"></i> hello@joes.food</a>
+      </div>
+      <div class="footer__col">
+        <h5>Newsletter</h5>
+        <p>Get live-cook alerts &amp; deals.</p>
+        <form class="footer__form" id="newsForm">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; <span id="year"></span> Joe's Restaurant. Crafted with <i class="fa-solid fa-heart"></i> for food lovers.</p>
+    </div>
+  </footer>
+
+  <!-- ===== Cart Drawer ===== -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="cart" id="cart" aria-hidden="true">
+    <div class="cart__head">
+      <h3><i class="fa-solid fa-bag-shopping"></i> Your Order</h3>
+      <button class="cart__close" id="cartClose" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart__body" id="cartBody">
+      <div class="cart__empty" id="cartEmpty">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <p>Your bag is empty</p>
+        <span>Add something delicious from the menu.</span>
+      </div>
+    </div>
+    <div class="cart__foot" id="cartFoot" hidden>
+      <div class="cart__row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+      <div class="cart__row cart__row--muted"><span>Delivery</span><span id="delivery">$2.50</span></div>
+      <div class="cart__row cart__row--total"><span>Total</span><span id="total">$0.00</span></div>
+      <button class="btn btn--primary btn--block" id="checkoutBtn">Checkout · <span id="checkoutTotal">$0.00</span></button>
+    </div>
+  </aside>
+
+  <!-- ===== Checkout / Success Modal ===== -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__box">
+      <button class="modal__close" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal__icon"><i class="fa-solid fa-check"></i></div>
+      <h3>Order placed!</h3>
+      <p>Your food is being prepared live in our kitchen. Track it on the stream — estimated delivery in <strong>30 minutes</strong>.</p>
+      <div class="modal__order" id="modalOrder"></div>
+      <button class="btn btn--primary btn--block" id="modalDone">Back to the kitchen</button>
+    </div>
+  </div>
+
+  <!-- ===== Toast ===== -->
+  <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Added to cart</span></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
