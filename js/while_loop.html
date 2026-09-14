@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #products-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 30px;
+  }
+  .product-card{
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  .product-card h2{
+    margin-bottom: 10px;
+  }
+  .product-card p{
+    margin: 5px 0;
+  }
+</style>
+<body>
+  <div id="products-container"></div>
+  <button onclick="document.getElementById('demo').innerHTML=Date()">click me </button>
+  <button onclick="myFunction()"></button>
+  <script src="main.js"></script>
+  
+</body>
+</html>

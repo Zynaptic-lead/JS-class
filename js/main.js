@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<style>
-  #products-container{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 30px;
-  }
-  .product-card{
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  .product-card h2{
-    margin-bottom: 10px;
-  }
-  .product-card p{
-    margin: 5px 0;
-  }
-</style>
-<body>
-<div id="products-container"></div>
-  <script>
-    const products = [
+const products = [
   {
     "product_id": 6,
     "id": 5,
@@ -582,17 +551,73 @@
     "user_created_at": "2024-11-22 20:35:43"
   }
 ]
- 
 
-const container = document.getElementById('products-container')
-for(let i = 0; i < products.length; i++){
+const container = document.getElementById("products-container");
+let i = 0;
+while( i < products.length){
   const product = products[i];
-  container.innerHTML += `<div class="product-card">
-    <h2>${product.title}</h2>
-    <p>Price: #${product.actual_price}</p>
-    <p>Location:  ${product.location}</p>
-    </div>`
+  container.innerHTML += `
+  <div class="product-card">
+  <h2>${product.title}</h2>
+  <p>${product.email}</p>
+  <p>${product.username}</p>
+  </div`;
+  i++
+
 }
-  </script>
-</body>
-</html>
+
+// This is a function without parameter
+function greetMe(){
+  console.log("Good morning")
+}
+// This is a function with a parameter
+function greetJohn(name){
+  console.log(`Good morning ${name}`);
+}
+greetJohn("James")
+greetJohn("Mary")
+
+// This is the function with console.log
+function add(a , b){
+  console.log( a + b)
+}
+add(20 , 30)
+// This is the function with the return value
+function multiply(x,y){
+  return x + y;
+}
+const result = multiply(10 , 10)
+console.log(result);
+
+const total = multiply(10,10)*2
+console.log(total)
+
+const item ={
+  title: "Laptop",
+  actual_price: 15000,
+  promo_price:10000
+}
+ function items(item){
+  if(item.promo_price){
+    return item.promo_price
+  }
+  return item.actual_price
+}
+const price = items(item);
+console.log(price)
+
+function checkPrice(price){
+  if(price > 100000){
+    return "Expensive"
+  }
+  return "Affordable"
+}
+console.log(checkPrice(15000000))
+console.log(checkPrice(30000))
+
+
+function pen( c, e){
+  return c * e;
+}
+const age = pen(4 , 6)
+console.log(age)
